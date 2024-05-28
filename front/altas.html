@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="recursos/js/altas.js"></script>
+    <title>ADMIN</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Productos</a><a href="altas.html">Altas</a>
+    </nav>
+    <h1>Ingresar productos</h1>
+    <form id="formulario" action="http://localhost:3000/productos" method="POST">
+        <input type="text" name="marca">
+        <br>
+        <input type="text" name="tipo">
+        <br>
+        <input type="number" name="talle">
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

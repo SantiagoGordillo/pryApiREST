@@ -1,0 +1,12 @@
+{
+    "productos": [
+      {"id": 1, "marca": "Puma", "tipo": "zapatilla", "talle": "43"},
+      {"id": 2, "marca": "Nike", "tipo": "zapatilla", "talle": "42"},
+      {"id": 3, "marca": "Adidas", "tipo": "zapatilla", "talle": "41"},
+      {"id": 4, "marca": "Reebok", "tipo": "zapatilla", "talle": "40"},
+      {"id": 5, "marca": "New Balance", "tipo": "zapatilla", "talle": "39"},
+      {"id": 6, "marca": "Converse", "tipo": "zapatilla", "talle": "38"},
+      {"id": 7, "marca": "Vans", "tipo": "zapatilla", "talle": "37"},
+      {"id": 8, "marca": "Rust", "tipo": "Buso", "talle": "65"}
+    ]
+}
