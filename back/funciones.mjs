@@ -15,7 +15,12 @@ const leerArchivosJson = async()=>{
 
 const obtenerID = async()=>{
     await leerArchivosJson();
-    return (productosV1.productos[productosV1.productos.length -1].id + 1);
+    try {
+        return (productosV1.productos[productosV1.productos.length -1].id + 1);
+    } catch (error) {
+        return 1;
+    }
+    
 }
 
 const gestionarProductos = async(respuesta)=>{
