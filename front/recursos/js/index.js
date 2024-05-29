@@ -1,23 +1,36 @@
-const traerProductos = async () => {
+// Implementación Front-End de API REST
+const obtenemosProductos = async () => {
     try {
-        const contenedor = document.getElementById('productos')
-        const datosProductos = await fetch('http://localhost:3000/productos')
-        const datosJSON = await datosProductos.json()
-        console.log(datosJSON);
-        let HTML = '';
-        datosJSON.productos.forEach((producto) => {
-            HTML += `
-            <article>
-                <h3>Marca: ${producto.marca}</h3>
-                <div>Tipo: ${producto.tipo}</div>
-                <div>Talle: ${producto.talle}</div>
-                <a href="modificar.html?id=${producto.id}">Editar</a>
-            </article>
-            `;
-        })
-        contenedor.innerHTML = HTML;
+         // Solicitamos api
+        const datos = await fetch('http://localhost:3000/productos');
+        const jsonProductos = await datos.json();
+        const productos = jsonProductos.productos;
+        // Renderizamos
+        renderizar('productos', productos);
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-}
-traerProductos();
+};
+
+const renderizar = (id, productos) => {
+    // Donde se renderiza
+    const contenedor = document.getElementById(id);
+    // Construimos el HTML
+    let html = '';
+    productos.forEach((producto) => {
+        html += `<article>
+                    <ul>
+                        <li class="productos-marca">${producto.marca} <a class="productos-marca__boton" href="./editar.html?id=${producto.id}">editar</a> </li>
+                        <li>Tipo: ${producto.tipo}
+                        <li>Talle: ${producto.talle}
+                        <li>Precio: $${producto.precio}
+                    </ul>
+            </article>`;
+    });
+    // Asignamos el contenido
+    contenedor.innerHTML = html;
+};
+// ---------------------------------------------------------
+// Invocar funciones ---------------------------------------
+// ---------------------------------------------------------
+obtenemosProductos();

@@ -18,14 +18,6 @@ const obtenerID = async()=>{
     return (productosV1.productos[productosV1.productos.length -1].id + 1);
 }
 
-// const obtenerIDTEst = (JSON)=>{
-//     const keys = Object.keys(JSON);
-//     const arrayKey = keys.find(key => Array.isArray(JSON[key]));
-//     return (JSON[arrayKey][JSON[arrayKey].length - 1].id + 1);
-// }
-// await leerArchivosJson();
-// console.log(obtenerIDTEst(productosV1));
-
 const gestionarProductos = async(respuesta)=>{
     await leerArchivosJson();
     if(productosV1){
@@ -92,7 +84,8 @@ const agregarProducto = async(peticion, respuesta)=>{
                 id: id,
                 marca: datosProducto.marca,
                 tipo: datosProducto.tipo,
-                talle: datosProducto.talle
+                talle: datosProducto.talle,
+                precio: datosProducto.precio
             };
             productosV1.productos.push(nuevoProducto)
             await writeFile(rutaJson, JSON.stringify(productosV1))
@@ -135,7 +128,8 @@ const modificarProducto = async(peticion, respuesta)=>{
                             id: parseInt(id),
                             marca: cambiarProducto.marca,
                             tipo: cambiarProducto.tipo,
-                            talle: cambiarProducto.talle
+                            talle: cambiarProducto.talle,
+                            precio: cambiarProducto.precio
                         };
                     }else{
                         return producto;
@@ -174,6 +168,7 @@ const borrarProducto = async (peticion, respuesta) => {
         };
         if (JSON.stringify(productosV1) != JSON.stringify(respuestaJSON)){
             await writeFile(rutaJson, JSON.stringify(respuestaJSON))
+            respuesta.setHeader('Access-Control-Allow-Origin', '*');
             respuesta.statusCode=201
             respuesta.end();
         }else{
@@ -186,18 +181,6 @@ const borrarProducto = async (peticion, respuesta) => {
         respuesta.statusCode=500
         respuesta.setHeader('Content-Type', 'text/plain')
         respuesta.end("Error en el servidor");
-    }
-}
-
-const gestionar404html = async (respuesta)=>{
-    const ruta = join('..','front', '404.html');
-    try{
-        const datos = await readFile(ruta, 'utf-8');
-        respuesta.setHeader('Content-Type', 'text/html;charset=utf-8');
-        respuesta.statusCode = 404;
-        respuesta.end(datos);
-    }catch(error){
-        console.log(error);
     }
 }
 
@@ -230,4 +213,4 @@ const gestionarOPTION = async (respuesta) => {
     }
 } 
 
-export { gestionarProductos, gestionarProducto, gestionar404html, agregarProducto, gestionar404, modificarProducto, borrarProducto, fallback, gestionarOPTION}
+export { gestionarProductos, gestionarProducto, agregarProducto, gestionar404, modificarProducto, borrarProducto, fallback, gestionarOPTION}

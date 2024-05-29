@@ -1,5 +1,5 @@
 import { createServer } from 'node:http'; 
-import { gestionarProductos, gestionarProducto, gestionar404html, agregarProducto, gestionar404, modificarProducto, borrarProducto, fallback, gestionarOPTION } from './funciones.mjs';
+import { gestionarProductos, gestionarProducto, agregarProducto, gestionar404, modificarProducto, borrarProducto, fallback, gestionarOPTION } from './funciones.mjs';
 
 const PUERTO = 3000;
 
@@ -12,7 +12,7 @@ const servidor = createServer(async (peticion, respuesta)=>{
             gestionarProducto(peticion, respuesta) //Chequed = Positive
         }
         else {
-            gestionar404html(respuesta) //Chequed = Positive
+            gestionar404(respuesta) //Chequed = Positive
         }
     }else if(peticion.method === 'POST'){
         if(peticion.url === "/productos"){
